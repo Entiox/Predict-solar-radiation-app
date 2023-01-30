@@ -1,0 +1,41 @@
+.navbar {
+  background-color: black;
+}
+
+.nav-brand {
+  padding-right: 2%;
+}
+
+.navbar-nav {
+  justify-content: end;
+  padding-right: 2%;
+}
+
+.nav-item {
+  white-space: nowrap;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.outlet {
+  width: 100%;
+}
+ 
+footer {
+  bottom: 0%;
+  text-align: start;
+  width: 100%;
+  background-color: black;
+  color: white
+}
+  
+.footer-block {
+  padding-top: 60px;
+  padding-bottom: 30px;
+}
+  
+.footer-text {
+  margin-bottom: 40px;
+  margin-left: 2%;
+  font-style: bold;
+}

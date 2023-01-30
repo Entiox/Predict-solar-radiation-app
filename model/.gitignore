@@ -1,0 +1,5 @@
+.venv
+.vscode
+src/__pycache__
+resources/scaler.pkl
+resources/solar_radiation_prediction_model.pkl

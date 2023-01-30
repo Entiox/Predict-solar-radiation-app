@@ -1,0 +1,44 @@
+.prediction-block {
+    border: 1px solid black;
+    border-radius: 30px;
+    width: 50%;
+    margin: auto;
+    margin-top: 120px;
+    margin-bottom: 50px;
+}
+
+@media only screen and (max-width: 1200px){
+    .prediction-block {
+        border: 1px solid black;
+        border-radius: 30px;
+        width: 80%;
+        margin: auto;
+        margin-top: 120px;
+        margin-bottom: 50px;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .prediction-block {
+        border: 1px solid black;
+        border-radius: 30px;
+        width: 100%;
+        margin: auto;
+        margin-top: 120px;
+        margin-bottom: 50px;
+    }
+}
+
+.time-param {
+    text-align: center;
+}
+
+.other-param {
+    text-align: center;
+    width: 80%;
+}
+
+.results-block {
+    margin-bottom: 120px;
+    text-align: center;
+}

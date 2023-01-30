@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function singlePrediction(){
+            let inputParams = { 
+                "Time": "13:05:22", "Temperature": "62","Pressure": "30.44", "Humidity": "54", "WindDirection(Degrees)": "45.65",
+                "Speed": "7.87", "TimeSunRise": "6:13:00", "TimeSunSet": "18:13:00" 
+            };
+            let reponse = await fetch("/single_predict", {
+                    method: "POST",
+                    cache: "no-cache",
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify(inputParams)
+                }
+            )
+            let data = await reponse.json()
+            document.getElementById("single").innerHTML = JSON.stringify(data)
+    
+        }
+        async function multiPrediction(){
+            let inputParams = [
+                { 
+                    "Time": "13:05:22", "Temperature": "62","Pressure": "30.44", "Humidity": "54", "WindDirection(Degrees)": "45.65",
+                    "Speed": "7.87", "TimeSunRise": "6:13:00", "TimeSunSet": "18:13:00" 
+                }, 
+                { 
+                    "Time": "22:15:23", "Temperature": "48","Pressure": "30.25", "Humidity": "27",
+                    "WindDirection(Degrees)": "213.57", "Speed": "27", "TimeSunRise": "6:50:00", "TimeSunSet": "17:46:00" 
+                },
+                { 
+                    "Time": "10:55:21", "Temperature": "62", "Pressure": "30.45", "Humidity": "48", "WindDirection(Degrees)": "34.37",
+                    "Speed": "5.62", "TimeSunRise": "6:21:00", "TimeSunSet": "17:52:00" 
+                }
+            ];
+            let reponse = await fetch("/multi_predict", {
+                    method: "POST",
+                    cache: "no-cache",
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify(inputParams)
+                }
+            )
+            let data = await reponse.json()
+            document.getElementById("multi").innerHTML = JSON.stringify(data)
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="Single prediction" onclick="singlePrediction()">
+    <p id="single">Single prediction value</p>
+    <input type="button" value="Multi prediction" onclick="multiPrediction()">
+    <p id="multi">Multi prediction value</p>
+</body>
+</html>
