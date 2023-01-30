@@ -16,7 +16,7 @@ function App() {
             <Route path="/single_prediction" element={ <Prediction /> }/>
             <Route path="/graph" element={ <GraphDrawing /> }/>
           </Route>
-        <Route path="*" element={ <Error /> }/>
+          <Route path="*" element={ <Error /> }/>
         </Routes>
       </BrowserRouter>
     </div>
