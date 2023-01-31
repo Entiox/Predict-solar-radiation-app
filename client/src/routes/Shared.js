@@ -12,13 +12,13 @@ function Shared() {
                 <Navbar.Collapse className="navbar-nav">
                     <Nav>
                         <Nav.Item className="nav-item">
-                            <Nav.Link as={NavLink} to="/">Get Started</Nav.Link>
+                            <Nav.Link as={ NavLink } to="/">Get Started</Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="nav-item">
-                            <Nav.Link as={NavLink} to="/single_prediction">Make Prediction</Nav.Link>
+                            <Nav.Link as={ NavLink } to="/single_prediction">Make Prediction</Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="nav-item">
-                            <Nav.Link as={NavLink} to="/graph">Draw Graph</Nav.Link>
+                            <Nav.Link as={ NavLink } to="/graph">Draw Graph</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Navbar.Collapse>
@@ -40,4 +40,4 @@ function Shared() {
     );
 }
 
-export default Shared;
+export default Shared
