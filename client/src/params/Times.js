@@ -88,4 +88,4 @@ const times = [
     { sunrise: "06:57", sunset: "17:54" }
 ]
 
-export default times;
+export default times

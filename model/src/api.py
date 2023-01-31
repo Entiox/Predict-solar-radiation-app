@@ -10,11 +10,14 @@ from sys import exit
 app = Flask(__name__, template_folder=path.join("..", "templates"))
 cors = CORS(app)
 
+single_predict_route = "/single_predict"
+multi_predict_route = "/multi_predict"
+
 @app.route("/", methods=["GET"])
 def start():
     return render_template("index.html")
 
-@app.route("/single_predict", methods=["POST"])
+@app.route(single_predict_route, methods=["POST"])
 @cross_origin()
 def single_predict():
     json_data = request.get_json()
@@ -27,7 +30,7 @@ def single_predict():
     }
     return jsonify(result)
 
-@app.route("/multi_predict", methods=["POST"])
+@app.route(multi_predict_route, methods=["POST"])
 @cross_origin()
 def multi_predict():
     json_data = request.get_json()

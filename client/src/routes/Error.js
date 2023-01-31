@@ -1,6 +1,6 @@
 import "../styles/Error.css"
 
-function Error(){
+function Error() {
     return(
         <div className="error-block d-flex flex-column">
             <div className="error-block__header">

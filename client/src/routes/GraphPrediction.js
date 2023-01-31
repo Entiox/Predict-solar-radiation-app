@@ -5,9 +5,9 @@ import TimePickerInput from "react-time-picker-input"
 import times from "../params/Times"
 import Select from "react-select"
 import filterAndSort from "../utils/FilterAndSort"
-import "../styles/GraphDrawing.css"
+import "../styles/GraphPrediction.css"
 
-function GraphDrawing(){
+function GraphPrediction() {
     const [selected, setSelected] = useState(1)
     const [startTime, setStartTime] = useState("00:00")
     const [endTime, setEndTime] = useState("23:59")
@@ -568,4 +568,4 @@ function GraphDrawing(){
     )
 }
 
-export default GraphDrawing
+export default GraphPrediction

@@ -1,6 +1,7 @@
 import { Nav, Navbar } from "react-bootstrap"
 import { NavLink, Outlet } from "react-router-dom"
 import "../styles/Shared.css"
+import { singlePredictionRoute, graphPredictionRoute } from "../App";
 
 function Shared() {
     return(
@@ -15,10 +16,10 @@ function Shared() {
                             <Nav.Link as={ NavLink } to="/">Get Started</Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="nav-item">
-                            <Nav.Link as={ NavLink } to="/single_prediction">Make Prediction</Nav.Link>
+                            <Nav.Link as={ NavLink } to={ singlePredictionRoute }>Make Prediction</Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="nav-item">
-                            <Nav.Link as={ NavLink } to="/graph">Draw Graph</Nav.Link>
+                            <Nav.Link as={ NavLink } to={ graphPredictionRoute }>Draw Graph</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Navbar.Collapse>
