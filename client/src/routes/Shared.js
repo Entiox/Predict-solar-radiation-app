@@ -32,7 +32,7 @@ function Shared() {
             <div className="footer-block">
                 <div className="d-flex flex-column">
                     <span className="footer-text">App made by Dražen Antunović</span>
-                    <span className="footer-text">It is a project as part of the course called Computing: Service and Data Analysis</span>
+                    <span className="footer-text">It is a project as part of the course called Computer Science: Service and Data Analysis</span>
                     <span className="footer-text">from Faculty of Electrical Engineering, Computer Science and Information Technology, Osijek</span>
                 </div>
             </div>
