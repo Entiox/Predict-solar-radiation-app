@@ -401,7 +401,7 @@ function GraphPrediction() {
                     : null }
                     { selected === 3 ? 
                         <>
-                            <h5>Pressure: (Hg)</h5>
+                            <h5>Pressure: (inches Hg)</h5>
                             <div className="my-4 d-flex flex-row align-items-center">
                                 <input className="me-2" type="number" min="30.19" max="30.56" step="0.01" value={ startPressure } onChange={ (event) => setStartPressure(event.target.value) }/>
                                 -
@@ -499,7 +499,7 @@ function GraphPrediction() {
                     : null }
                     { selected !== 3 ? 
                         <div className="d-flex flex-column align-items-center mx-4 mb-3">
-                            <h5>Pressure: (Hg)</h5>
+                            <h5>Pressure: (inches Hg)</h5>
                             <div className="my-3 d-flex flex-row align-items-center">
                                 <input className="me-2" type="number" min="30.19" max="30.56" step="0.01" value={ pressure } onChange={ (event) => setPressure(event.target.value) }/>
                             </div>

@@ -1,7 +1,9 @@
 from pandas import read_csv
+from pandas import concat
+from numpy import concatenate
 from pickle import dump
 from data_modification import formatTime
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, GradientBoostingRegressor, HistGradientBoostingRegressor
 from sklearn.neural_network import MLPRegressor
@@ -10,6 +12,8 @@ from column_names import unix_time, data_, radiation
 from os import path
 
 dataset_path = path.join("..", "resources", "SolarPrediction.csv")
+scaler_path = path.join("..", "resources", "scaler.pkl")
+model_path = path.join("..", "resources", "solar_radiation_prediction_model.pkl")
 
 def prepareDataForTraining():
     data = read_csv(dataset_path)
@@ -22,17 +26,17 @@ def prepareDataForTraining():
     global X_train, X_test, y_train, y_test
     X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.75, shuffle=True)
 
-    scaler = MinMaxScaler()
+    scaler = StandardScaler()
     global X_train_normalized
     X_train_normalized = scaler.fit_transform(X_train)
     global X_test_normalized 
     X_test_normalized = scaler.transform(X_test)
-    dump(scaler, file=open(path.join("..", "resources", "scaler.pkl"), "wb"))
+    dump(scaler, file=open(scaler_path, "wb"))
 
 def trainAndSaveModel():
     prepareDataForTraining()
-    rf = ExtraTreesRegressor(n_estimators=128, max_depth=32, min_samples_split=1, min_samples_leaf=1)
-    dump(rf.fit(X_train_normalized, y_train), file=open(path.join("..", "resources", "solar_radiation_prediction_model.pkl"), "wb"))
+    et = ExtraTreesRegressor(n_estimators=128, max_depth=32, min_samples_split=1, min_samples_leaf=1)
+    dump(et.fit(concatenate((X_train_normalized, X_test_normalized), axis=0), concat([y_train, y_test], ignore_index=True)), file=open(model_path, "wb"))
 
 def printStatistics(algorithmName, y_pred, y_test):
     mae = mean_absolute_error(y_pred, y_test)
@@ -43,24 +47,24 @@ def printStatistics(algorithmName, y_pred, y_test):
     print(f"Mean Absolute Error: {mae}\nMean Squared Error: {mse}\nRoot Mean Squared Error: {rmse}\nCoefficient of Determination: {r2}\n")
 
 def trainAndTestModels():
-    rf = RandomForestRegressor(n_estimators=64, max_depth=64, min_samples_split=1, min_samples_leaf=1)
-    printStatistics(algorithmName="Random Forest Regression", 
+    rf = RandomForestRegressor(n_estimators=64, max_depth=100, min_samples_split=1)
+    printStatistics(algorithmName="Random Forest Regressor", 
         y_pred=rf.fit(X_train_normalized, y_train).predict(X_test_normalized), y_test=y_test)
 
-    et = ExtraTreesRegressor(n_estimators=128, max_depth=32, min_samples_split=1, min_samples_leaf=1)
-    printStatistics(algorithmName="Extra Trees Regression",
+    et = ExtraTreesRegressor(n_estimators=30, max_depth=180, min_samples_split=1)
+    printStatistics(algorithmName="Extra Trees Regressor",
         y_pred=et.fit(X_train_normalized, y_train).predict(X_test_normalized), y_test=y_test)
 
-    gb = GradientBoostingRegressor(learning_rate=0.1, n_estimators=64, max_depth=128, min_samples_split=50, min_samples_leaf=1)
-    printStatistics(algorithmName="Gradient Boosting Regression",
+    gb = GradientBoostingRegressor(n_estimators=160, max_depth=10, min_samples_split=2)
+    printStatistics(algorithmName="Gradient Boosting Regressor",
         y_pred=gb.fit(X_train_normalized, y_train).predict(X_test_normalized), y_test=y_test)
 
-    hb = HistGradientBoostingRegressor(learning_rate=0.1, max_iter=5000, max_leaf_nodes=100, min_samples_leaf=100)
-    printStatistics(algorithmName="Hist Gradient Boosting Regression",
+    hb = HistGradientBoostingRegressor(max_iter=4000, max_leaf_nodes=100, min_samples_leaf=5)
+    printStatistics(algorithmName="Hist Gradient Boosting Regressor",
         y_pred=hb.fit(X_train_normalized, y_train).predict(X_test_normalized), y_test=y_test)
 
-    nn = MLPRegressor(hidden_layer_sizes=(100, 100, 100, 100), max_iter=500, learning_rate="constant")
-    printStatistics(algorithmName="Neural Network Regression",
+    nn = MLPRegressor(hidden_layer_sizes=(100, 100, 100), max_iter=500)
+    printStatistics(algorithmName="Neural Network Regressor",
         y_pred=nn.fit(X_train_normalized, y_train).predict(X_test_normalized), y_test=y_test)
 
 if(__name__ == "__main__"):

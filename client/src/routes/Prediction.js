@@ -125,7 +125,7 @@ function Prediction() {
                             </Col>
                             <Col xs={12} lg={6} className="d-flex justify-content-center">
                                 <Form.Group controlId="pressureInput" className="d-flex flex-column other-param mb-4">
-                                    <Form.Label className="pb-3">Pressure: (Hg)</Form.Label>
+                                    <Form.Label className="pb-3">Pressure: (inches Hg)</Form.Label>
                                     <InputRange
                                         minValue={ 30.19 }
                                         maxValue={ 30.56 }
